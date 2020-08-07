@@ -35,6 +35,7 @@ public class SampleTesting {
             System.out.println("In catch Block");
         }
 
+        //To run test machine
         /*System.setProperty("webdriver.chrome.driver","/Users/prdivaka/Selenium Driver/chromedriver");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
