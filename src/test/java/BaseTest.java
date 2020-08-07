@@ -44,7 +44,7 @@ public class BaseTest {
     public void launchUrl(String url){
         try {
             driver.get(url);
-            Allure.addAttachment("Url is launched successfully", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+            //Allure.addAttachment("Url is launched successfully", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         } catch (WebDriverException e) {
             Allure.addAttachment("Url is not launched successfully", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
