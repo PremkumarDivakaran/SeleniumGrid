@@ -49,7 +49,7 @@ public class SampleTesting extends BaseTest {
     public void validateGoogleSearchButtonText() {
         driver = lanchDriver("chrome");
         launchUrl("https://google.com");
-        WebElement searchButton = getElement("(//*[@name='btnKI'])[2]" , "Search Button");
+        WebElement searchButton = getElement("(//*[@name='btnK'])[2]" , "Search Button");
         String searchButtonText = searchButton.getAttribute("value");
         Assert.assertEquals(searchButtonText,"Google Search");
     }
