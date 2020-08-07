@@ -18,7 +18,7 @@ public class SampleTesting {
 
     @Step
     public WebDriver lanchDriver(String browser) {
-        /*try {
+        try {
             DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setPlatform(Platform.WINDOWS);
             desiredCapabilities.setBrowserName(browser);
@@ -33,12 +33,12 @@ public class SampleTesting {
 
         } catch (MalformedURLException e) {
             System.out.println("In catch Block");
-        }*/
+        }
 
-        System.setProperty("webdriver.chrome.driver","/Users/prdivaka/Selenium Driver/chromedriver");
+        /*System.setProperty("webdriver.chrome.driver","/Users/prdivaka/Selenium Driver/chromedriver");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);*/
         return driver;
     }
 
