@@ -13,34 +13,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class SampleTesting {
-    private static WebDriver driver;
-
-    @Step
-    public WebDriver lanchDriver(String browser) {
-        try {
-            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-            desiredCapabilities.setPlatform(Platform.WINDOWS);
-            desiredCapabilities.setBrowserName(browser);
-            desiredCapabilities.setVersion("");
-
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.merge(desiredCapabilities);
-
-            driver = new RemoteWebDriver(new URL("http://192.168.18.27:9595/wd/hub"),chromeOptions);
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-        } catch (MalformedURLException e) {
-            System.out.println("In catch Block");
-        }
-        
-        /*System.setProperty("webdriver.chrome.driver","/Users/prdivaka/Selenium Driver/chromedriver");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);*/
-        return driver;
-    }
+public class SampleTesting extends BaseTest {
+    WebDriver driver;
 
     @AfterMethod
     public void quitDriver() {
@@ -52,68 +26,74 @@ public class SampleTesting {
     @Test
     public void validateGoogleHomePage() {
         driver = lanchDriver("chrome");
-        driver.get("https://google.com");
+        launchUrl("https://google.com");
         Assert.assertEquals(driver.getTitle(),"Google");
     }
 
     @Test
     public void validateGoogleSearchBox() {
         driver = lanchDriver("chrome");
-        driver.get("https://google.com");
+        launchUrl("https://google.com");
         Assert.assertEquals(driver.findElement(By.xpath("//*[@name='q']")).isDisplayed(),true);
     }
 
     @Test
     public void validateGoogleSearchButton() {
         driver = lanchDriver("chrome");
-        driver.get("https://google.com");
-        Assert.assertEquals(driver.findElement(By.xpath("(//*[@name='btnK'])[2]")).isDisplayed(),true);
+        launchUrl("https://google.com");
+        WebElement searchButton = getElement("(//*[@name='btnK'])[2]" , "Search Button");
+        Assert.assertEquals(searchButton.isDisplayed(),true);
     }
 
     @Test
     public void validateGoogleSearchButtonText() {
         driver = lanchDriver("chrome");
-        driver.get("https://google.com");
-        String seachButtonText = driver.findElement(By.xpath("(//*[@name='btnK'])[2]")).getAttribute("value");
-        Assert.assertEquals(seachButtonText,"Google Search");
+        launchUrl("https://google.com");
+        WebElement searchButton = getElement("(//*[@name='btnK'])[2]" , "Search Button");
+        String searchButtonText = searchButton.getAttribute("value");
+        Assert.assertEquals(searchButtonText,"Google Search");
     }
 
     @Test
     public void validateGoogleFeelingLucky() {
         driver = lanchDriver("chrome");
-        driver.get("https://google.com");
-        Assert.assertEquals(driver.findElement(By.xpath("(//*[@name='btnI'])[2]")).isDisplayed(),true);
+        launchUrl("https://google.com");
+        WebElement searchButton = getElement("(//*[@name='btnI'])[2]" , "Feeling Lucky Button");
+        Assert.assertEquals(searchButton.isDisplayed(),true);
     }
 
     @Test
     public void validateGoogleFeelingLuckyText() {
         driver = lanchDriver("chrome");
-        driver.get("https://google.com");
-        String feelingLuckyText = driver.findElement(By.xpath("(//*[@name='btnI'])[2]")).getAttribute("value");
+        launchUrl("https://google.com");
+        WebElement feelingLuckyButton = getElement("(//*[@name='btnI'])[2]" , "Feeling Lucky Button");
+        String feelingLuckyText = feelingLuckyButton.getAttribute("value");
         Assert.assertEquals(feelingLuckyText,"I'm Feeling Lucky");
     }
 
     @Test
     public void validateGoogleSignInButton() {
         driver = lanchDriver("chrome");
-        driver.get("https://google.com");
-        Assert.assertEquals(driver.findElement(By.xpath("(//div[@class='gb_0f']//a)[2]")).isDisplayed(),true);
+        launchUrl("https://google.com");
+        WebElement googleSignInButton = getElement("(//div[@class='gb_0f']//a)[2]" , "Google SignIn Button");
+        Assert.assertEquals(googleSignInButton.isDisplayed(),true);
     }
 
     @Test
     public void validateGoogleSignInButtonText() {
         driver = lanchDriver("chrome");
-        driver.get("https://google.com");
-        String signButtonText = driver.findElement(By.xpath("(//div[@class='gb_0f']//a)[2]")).getText();
+        launchUrl("https://google.com");
+        WebElement googleSignInButton = getElement("(//div[@class='gb_0f']//a)[2]" , "Google SignIn Button");
+        String signButtonText = googleSignInButton.getText();
         Assert.assertEquals(signButtonText,"Sign in");
     }
 
     @Test
     public void validateGoogleSignInButtonNavigation() {
         driver = lanchDriver("chrome");
-        driver.get("https://google.com");
-        WebElement signInButton = driver.findElement(By.xpath("(//div[@class='gb_0f']//a)[2]"));
-        signInButton.click();
+        launchUrl("https://google.com");
+        WebElement googleSignInButton = getElement("(//div[@class='gb_0f']//a)[2]" , "Google SignIn Button");
+        googleSignInButton.click();
         Assert.assertEquals(driver.getTitle(),"Sign in - Google Accounts");
     }
 
