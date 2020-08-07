@@ -55,9 +55,9 @@ public class BaseTest {
         WebElement webElement = null;
         try {
             webElement = driver.findElement(By.xpath(xpath));
-            //Allure.addAttachment("Webelement : " + elementName + "is present", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+            //Allure.addAttachment("Webelement -> " + elementName + "is present", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         } catch (NoSuchElementException e) {
-            Allure.addAttachment("Webelement : " + elementName + "is absent", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+            Allure.addAttachment("Webelement -> " + elementName + "is absent", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
         return webElement;
     }
